@@ -1,7 +1,7 @@
-import { Box, Button, Grid, Pagination, Stack, Switch, Typography } from "@mui/material"
+import { Box, Button, Grid, Pagination, Stack, Typography } from "@mui/material"
 import { CharacterCard } from "../components/CharacterCard"
 import { getCharacters } from 'rickmortyapi'
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import type { Character } from "rickmortyapi"
 
 export const CharactersPage = () => {
@@ -12,10 +12,10 @@ export const CharactersPage = () => {
   const loadCharacters = async () => {
     try 
     {
-      const fetchedCharacters = await getCharacters({ page: currentPage, species: onlyShowHumans ? "Human" : "Alien" })
-      if (fetchedCharacters.data.results)
+      const reponse = await getCharacters({ page: currentPage, species: onlyShowHumans ? "Human" : "Alien" })
+      if (reponse.data.results)
       {
-        setCharacters(fetchedCharacters.data.results)
+        setCharacters(reponse.data.results)
       }
     }
     catch (error)
