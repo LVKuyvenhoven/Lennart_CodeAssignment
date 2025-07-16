@@ -1,47 +1,41 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack } from "@mui/material"
+import { useState } from "react"
+import type { Character } from "rickmortyapi"
 
 interface Props {
-    characterName: string
-    characterUrl: string
+    characterToDisplay: Character
 }
 
-export const CharacterCard = ({characterName, characterUrl}: Props) => {
+export const CharacterCard = ({characterToDisplay}: Props) => {
     const [showDialog, setShowDialog] = useState(false)
     
     const openDialog = () =>{
         setShowDialog(true)
     }
 
-        const closeDialog = () =>{
+    const closeDialog = () =>{
         setShowDialog(false)
     }
 
   return (
     <>
-    <Button onClick={openDialog} variant="contained">{characterName}</Button>
+    <Button onClick={openDialog} variant="contained">{characterToDisplay.name}</Button>
     <Dialog open={showDialog}>
-         <Typography >Some info</Typography>
-         <DialogTitle>{characterName}</DialogTitle>
+         <DialogTitle>{characterToDisplay.name}</DialogTitle>
          <DialogContent>
             <Stack gap={3}>
-                Some content
+                <Box
+                  component="img"
+                  sx={{
+                    height: 233,
+                    width: 350,
+                    maxHeight: { xs: 233, md: 167 },
+                    maxWidth: { xs: 350, md: 250 },
+                    }}
+                    alt="The house from the offer."
+                    src={characterToDisplay.image}
+                />
             </Stack>
-                {/* <img
-        src={characterUrl}
-        loading="lazy"
-      /> */}
-      <Box
-  component="img"
-  sx={{
-    height: 233,
-    width: 350,
-    maxHeight: { xs: 233, md: 167 },
-    maxWidth: { xs: 350, md: 250 },
-  }}
-  alt="The house from the offer."
-  src={characterUrl}
-/>
          </DialogContent>
          <DialogActions>
             <Button variant="outlined" onClick={closeDialog}>Close</Button>
