@@ -1,20 +1,21 @@
-import { Box, Grid, Pagination, Stack, Typography } from "@mui/material"
+import { Box, Button, Grid, Pagination, Stack, Switch, Typography } from "@mui/material"
 import { CharacterCard } from "../components/CharacterCard"
 import { getCharacters } from 'rickmortyapi'
-import { useEffect, useState } from "react"
-import type { ApiResponse, Info, Character } from "rickmortyapi"
+import { useEffect, useMemo, useState } from "react"
+import type { Character } from "rickmortyapi"
 
 export const CharactersPage = () => {
-  const[characters, setCharacters] = useState<ApiResponse<Info<Character[]>>>()
+  const[characters, setCharacters] = useState<Character[]>()
   const [currentPage, setCurrentPage] = useState(0)
+  const [onlyShowHumans, setOnlyShowHumans] = useState(true)
 
   const loadCharacters = async () => {
     try 
     {
-      const fetchedCharacters = await getCharacters({ page: currentPage })
+      const fetchedCharacters = await getCharacters({ page: currentPage, species: onlyShowHumans ? "Human" : "Alien" })
       if (fetchedCharacters.data.results)
       {
-        setCharacters(fetchedCharacters)
+        setCharacters(fetchedCharacters.data.results)
       }
     }
     catch (error)
@@ -23,7 +24,6 @@ export const CharactersPage = () => {
     }
   }
 
-
   const selectPage = (event: React.ChangeEvent<unknown>, page: number) => {
     event.preventDefault()
     setCurrentPage(page)
@@ -31,20 +31,21 @@ export const CharactersPage = () => {
 
   useEffect(() => {
     loadCharacters()
-  }, [currentPage])
+  }, [currentPage, onlyShowHumans])
 
   return (
     <Box>
       <Stack direction="column" gap={3}>
-        <Typography variant="h3">Characters</Typography>
-          <Grid container spacing={2} columns={8}>
-            { characters?.data?.results?.length && characters.data.results.length > 0 && characters.data.results.map((character) => {
-              return (<Grid size={4} key={character.id} >
+        <Typography variant="h3" sx={{ color: '#68A629' }} >Characters</Typography>
+        <Button onClick={() => setOnlyShowHumans(!onlyShowHumans)}>{ onlyShowHumans ? <Typography>Only show aliens</Typography> : <Typography>Only show humans</Typography>}</Button>
+          <Grid container spacing={2} columns={4}>
+            { characters && characters.map((character) => {
+              return (<Grid size={2} key={character.id} >
                         <CharacterCard characterToDisplay={character} />
                       </Grid>)            
             })}
           </Grid>
-        <Pagination defaultPage={1} count={20} onChange={selectPage} variant="outlined" shape="rounded" color="secondary" />
+        <Pagination defaultPage={1} count={42} onChange={selectPage} variant="outlined" shape="rounded" color="primary" />
       </Stack>
     </Box>
   )

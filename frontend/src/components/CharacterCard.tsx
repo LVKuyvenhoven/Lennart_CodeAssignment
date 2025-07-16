@@ -1,4 +1,4 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack } from "@mui/material"
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Typography } from "@mui/material"
 import { useState } from "react"
 import type { Character } from "rickmortyapi"
 
@@ -19,8 +19,17 @@ export const CharacterCard = ({characterToDisplay}: Props) => {
 
   return (
     <>
-    <Button onClick={openDialog} variant="contained">{characterToDisplay.name}</Button>
-    <Dialog open={showDialog}>
+    <Box
+       onClick={openDialog}
+       component="img"
+       sx={{
+        height: 100,
+        width: 100,
+       }}
+       alt="The house from the offer."
+       src={characterToDisplay.image}
+    />
+    <Dialog open={showDialog} >
          <DialogTitle>{characterToDisplay.name}</DialogTitle>
          <DialogContent>
             <Stack gap={3}>
@@ -35,6 +44,10 @@ export const CharacterCard = ({characterToDisplay}: Props) => {
                     alt="The house from the offer."
                     src={characterToDisplay.image}
                 />
+                <Stack direction="row" gap={3}>
+                    <Typography>{characterToDisplay.gender}</Typography>
+                    <Typography>{characterToDisplay.species}</Typography>
+                </Stack>
             </Stack>
          </DialogContent>
          <DialogActions>
