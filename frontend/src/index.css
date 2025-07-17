@@ -35,23 +35,30 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.container {
+  position: relative;
+  width: 50%;
 }
-button:hover {
-  border-color: #646cff;
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #68A629;
+}
+
+.container:hover .overlay {
+  opacity: 1;
 }
 
 @media (prefers-color-scheme: light) {

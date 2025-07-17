@@ -44,7 +44,9 @@ export const CharactersPage = () => {
     <Box>
       <Stack direction="column" gap={3}>
         <Typography variant="h3" sx={{ color: '#68A629' }} >Characters</Typography>
-        <Button onClick={() => filterCharacters(!showHumans)} >{ showHumans ? <Typography>Show all aliens</Typography> : <Typography>Show all humans</Typography>}</Button>
+                      <Stack justifyContent="center" direction="row" gap={3}>
+        <Button variant="outlined" onClick={() => filterCharacters(!showHumans)} >{ showHumans ? <Typography>Show all aliens</Typography> : <Typography>Show all humans</Typography>}</Button>
+              </Stack>
           <Grid container spacing={2} columns={4}>
             { characters && characters.map((character) => {
               return (<Grid size={2} key={character.id} >

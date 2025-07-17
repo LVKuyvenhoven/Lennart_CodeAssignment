@@ -22,10 +22,16 @@ export const CharacterCard = ({characterToDisplay}: Props) => {
     <Box
        onClick={openDialog}
        component="img"
-       sx={{
-        height: 100,
-        width: 100,
-       }}
+        sx={{
+          width: "80%",
+          height: "80%",
+          '&:hover': {
+            color:  '#68A629',
+          bgcolor: '#68A629',
+          opacity: 0.5,
+  transition: ".5s ease"
+          },
+        }}
        src={characterToDisplay.image}
     />
     <Dialog open={showDialog} >

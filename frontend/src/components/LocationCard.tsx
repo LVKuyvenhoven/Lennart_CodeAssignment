@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Tooltip, Typography } from "@mui/material"
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Typography } from "@mui/material"
 import { useState } from "react"
 import type { Location } from "rickmortyapi"
 
@@ -19,9 +19,7 @@ export const LocationCard = ({locationToDisplay}: Props) => {
 
   return (
     <>
-    <Tooltip title="Test">
     <Button onClick={openDialog}>{locationToDisplay.name}</Button>
-    </Tooltip>
     <Dialog open={showDialog} >
          <DialogTitle>{locationToDisplay.name}</DialogTitle>
          <DialogContent>
