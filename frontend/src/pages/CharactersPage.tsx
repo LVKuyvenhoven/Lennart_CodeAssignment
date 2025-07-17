@@ -8,12 +8,12 @@ export const CharactersPage = () => {
   const[characters, setCharacters] = useState<Character[]>()
    const [pageCount, setPageCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
-  const [onlyShowHumans, setOnlyShowHumans] = useState(true)
+  const [showHumans, setShowHumans] = useState(true)
 
   const loadCharacters = async () => {
     try 
     {
-      const response = await getCharacters({ page: currentPage, species: onlyShowHumans ? "Human" : "Alien" })
+      const response = await getCharacters({ page: currentPage, species: showHumans ? "Human" : "Alien" })
       if (response.data.results)
       {
         setPageCount(response?.data?.info?.pages ?? 0)
@@ -33,18 +33,18 @@ export const CharactersPage = () => {
 
   const filterCharacters = (showHumans: boolean) => {
     setCurrentPage(1)
-    setOnlyShowHumans(showHumans)
+    setShowHumans(showHumans)
   }
 
   useEffect(() => {
     loadCharacters()
-  }, [currentPage, onlyShowHumans])
+  }, [currentPage, showHumans])
 
   return (
     <Box>
       <Stack direction="column" gap={3}>
         <Typography variant="h3" sx={{ color: '#68A629' }} >Characters</Typography>
-        <Button onClick={() => filterCharacters(!onlyShowHumans)} >{ onlyShowHumans ? <Typography>Only show aliens</Typography> : <Typography>Only show humans</Typography>}</Button>
+        <Button onClick={() => filterCharacters(!showHumans)} >{ showHumans ? <Typography>Show all aliens</Typography> : <Typography>Show all humans</Typography>}</Button>
           <Grid container spacing={2} columns={4}>
             { characters && characters.map((character) => {
               return (<Grid size={2} key={character.id} >
