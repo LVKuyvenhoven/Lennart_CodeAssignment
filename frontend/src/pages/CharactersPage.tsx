@@ -31,6 +31,11 @@ export const CharactersPage = () => {
     setCurrentPage(page)
   }
 
+  const filterCharacters = (showHumans: boolean) => {
+    setCurrentPage(1)
+    setOnlyShowHumans(showHumans)
+  }
+
   useEffect(() => {
     loadCharacters()
   }, [currentPage, onlyShowHumans])
@@ -39,7 +44,7 @@ export const CharactersPage = () => {
     <Box>
       <Stack direction="column" gap={3}>
         <Typography variant="h3" sx={{ color: '#68A629' }} >Characters</Typography>
-        <Button onClick={() =>setOnlyShowHumans(!onlyShowHumans)} >{ onlyShowHumans ? <Typography>Only show aliens</Typography> : <Typography>Only show humans</Typography>}</Button>
+        <Button onClick={() => filterCharacters(!onlyShowHumans)} >{ onlyShowHumans ? <Typography>Only show aliens</Typography> : <Typography>Only show humans</Typography>}</Button>
           <Grid container spacing={2} columns={4}>
             { characters && characters.map((character) => {
               return (<Grid size={2} key={character.id} >
@@ -47,7 +52,7 @@ export const CharactersPage = () => {
                       </Grid>)            
             })}
           </Grid>
-        <Pagination defaultPage={1} count={pageCount}  onChange={selectPage} variant="outlined" shape="rounded" color="primary" />
+        <Pagination page={currentPage} count={pageCount}  onChange={selectPage} variant="outlined" shape="rounded" color="primary" />
       </Stack>
     </Box>
   )
