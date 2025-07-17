@@ -4,19 +4,19 @@ import { Link } from "react-router-dom"
 export const NavBar = () => {
 
   return (
-      <Stack direction="row" gap={3}>
+      <Stack direction="row" gap={3} justifyContent={"center"}>
         <Link to="/">
-         <Typography sx={{ color: '#161A26' }} >
+         <Typography variant="h5" sx={{ color: '#161A26', '&:hover': { color: '#68A629' } }} >
             Characters
           </Typography>
         </Link>
         <Link to="/Locations">
-         <Typography sx={{ color: '#161A26' }} >
+         <Typography variant="h5" sx={{ color: '#161A26', '&:hover': { color: '#68A629' } }} >
             Locations
           </Typography>
         </Link>
         <Link to="/Episodes">
-         <Typography sx={{ color: '#161A26' }} >
+         <Typography variant="h5" sx={{ color: '#161A26', '&:hover': { color: '#68A629' } }} >
             Episodes
           </Typography>
         </Link>

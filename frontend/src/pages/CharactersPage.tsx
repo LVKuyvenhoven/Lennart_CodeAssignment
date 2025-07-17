@@ -6,7 +6,7 @@ import type { Character } from "rickmortyapi"
 
 export const CharactersPage = () => {
   const[characters, setCharacters] = useState<Character[]>()
-   const [pageCount, setPageCount] = useState(0)
+  const [pageCount, setPageCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
   const [showHumans, setShowHumans] = useState(true)
 
