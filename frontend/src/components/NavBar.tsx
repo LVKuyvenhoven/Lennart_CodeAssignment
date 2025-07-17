@@ -5,7 +5,7 @@ export const NavBar = () => {
 
   return (
       <Stack direction="row" gap={3}>
-        <Link to="/Characters">
+        <Link to="/">
          <Typography sx={{ color: '#161A26' }} >
             Characters
           </Typography>

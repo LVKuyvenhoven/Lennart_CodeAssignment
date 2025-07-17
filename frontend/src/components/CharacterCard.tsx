@@ -26,7 +26,6 @@ export const CharacterCard = ({characterToDisplay}: Props) => {
         height: 100,
         width: 100,
        }}
-       alt="The house from the offer."
        src={characterToDisplay.image}
     />
     <Dialog open={showDialog} >
@@ -41,7 +40,6 @@ export const CharacterCard = ({characterToDisplay}: Props) => {
                     maxHeight: { xs: 233, md: 167 },
                     maxWidth: { xs: 350, md: 250 },
                     }}
-                    alt="The house from the offer."
                     src={characterToDisplay.image}
                 />
                 <Stack direction="row" gap={3}>

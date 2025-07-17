@@ -2,6 +2,7 @@ import { Box, Grid, Pagination, Stack, Typography } from "@mui/material"
 import { getLocations } from 'rickmortyapi'
 import { useEffect, useState } from "react"
 import type { Location } from "rickmortyapi"
+import { LocationCard } from "../components/LocationCard"
 
 export const LocationsPage = () => {
   const[locations, setLocations] = useState<Location[]>()
@@ -38,7 +39,7 @@ export const LocationsPage = () => {
           <Grid container spacing={2} columns={4}>
             { locations && locations.map((location) => {
               return (<Grid size={2} key={location.id} >
-                <Typography>{location.name}</Typography>
+                <LocationCard locationToDisplay={location}/>
                       </Grid>)            
             })}
           </Grid>
